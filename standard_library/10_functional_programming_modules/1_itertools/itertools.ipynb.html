@@ -1,0 +1,283 @@
+<html>
+<head>
+<title>itertools.ipynb</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(169,183,198); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+itertools.ipynb</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">{ 
+ &quot;cells&quot;: [ 
+  { 
+   &quot;cell_type&quot;: &quot;heading&quot;, 
+   &quot;metadata&quot;: { 
+    &quot;collapsed&quot;: true 
+   }, 
+   &quot;level&quot;: 1, 
+   &quot;source&quot;: [ 
+    &quot;Itertools functions&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;Walking through understanding itertools.  First, let's import itertools.  Itertools has a lot of associated functions.&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: 20, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;import itertools&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;The accumulate function takes an iterator and an optional function.\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;***accumulate***:  an itertools function\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;***iterator***:  a sequence of values\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;***func***: (optional) the function to apply on each value.  the default function is operator.add (addition)  \n&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;heading&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;level&quot;: 2, 
+   &quot;source&quot;: [ 
+    &quot;Example 1:  understand itertools.accumulate&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;Let's look at a very basic example.  Let's start with a sequence from 0 to 10 and pass it to the accumulate function.  &quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: 22, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [ 
+    { 
+     &quot;name&quot;: &quot;stdout&quot;, 
+     &quot;output_type&quot;: &quot;stream&quot;, 
+     &quot;text&quot;: [ 
+      &quot;the itertools accumulate object:  &lt;itertools.accumulate object at 0x03BEE508&gt;\nthe itertools accumulate results list:  [0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55]\n&quot; 
+     ] 
+    } 
+   ], 
+   &quot;source&quot;: [ 
+    &quot;iterable = range(0, 11)\n&quot;, 
+    &quot;r = itertools.accumulate(iterable)\n&quot;, 
+    &quot;print(\&quot;the itertools accumulate object:  {}\&quot;.format(r))\n&quot;, 
+    &quot;print(\&quot;the itertools accumulate results list:  {}\&quot;.format(list(r)))&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;From the example, we start to see how the accumulate function works.  \n&quot;, 
+    &quot;0 = 0\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;1 = 0 + 1\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;3 = 0 + 1 + 2\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;6 = 0 + 1 + 2 + 3\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;...\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;Since we did not pass a func argument, the accumulate function used addition.&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;Example 2: our own func argument&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;Let's try using our own function to apply to each value.&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: 32, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;def our_own_function(a, b):\n&quot;, 
+    &quot;    \&quot;\&quot;\&quot; if b is even, then return a + b + 1, else return 0\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;    \n&quot;, 
+    &quot;    print(\&quot;a: {}  b:{}\&quot;.format(a, b))\n&quot;, 
+    &quot;    try:\n&quot;, 
+    &quot;        if b % 2 == 0:\n&quot;, 
+    &quot;            return a + b + 1\n&quot;, 
+    &quot;        else:\n&quot;, 
+    &quot;            return 0\n&quot;, 
+    &quot;    except ZeroDivisionError:\n&quot;, 
+    &quot;        return 0\n&quot;, 
+    &quot;\n&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: 33, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [ 
+    { 
+     &quot;name&quot;: &quot;stdout&quot;, 
+     &quot;output_type&quot;: &quot;stream&quot;, 
+     &quot;text&quot;: [ 
+      &quot;a: 0  b:1\na: 0  b:2\na: 3  b:3\na: 0  b:4\na: 5  b:5\na: 0  b:6\na: 7  b:7\na: 0  b:8\na: 9  b:9\na: 0  b:10\nthe itertools accumulate results list with our own func:  [0, 0, 3, 0, 5, 0, 7, 0, 9, 0, 11]\n&quot; 
+     ] 
+    } 
+   ], 
+   &quot;source&quot;: [ 
+    &quot;r = itertools.accumulate(iterable, func=our_own_function)\n&quot;, 
+    &quot;print(\&quot;the itertools accumulate results list with our own func:  {}\&quot;.format(list(r)))&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;heading&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;level&quot;: 2, 
+   &quot;source&quot;: [ 
+    &quot;Python Docs&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;On docs.python.org, there is a sample function which shows roughly how the accumulate function works.  I am going to copy and paste it below and add some of my own comments.&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: 36, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;\n&quot;, 
+    &quot;import operator\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;def accumulate2(iterable, func=operator.add):\n&quot;, 
+    &quot;    \&quot;\&quot;\&quot; \n&quot;, 
+    &quot;    1. convert the 'iterable' input to a type iter.  (i'm not sure why this is needed, \n&quot;, 
+    &quot;            we'll learn more in )\n&quot;, 
+    &quot;    2. set the total as the first element in 'it' (within try except in case there is no\n&quot;, 
+    &quot;            element)\n&quot;, 
+    &quot;    3. yield the total (this is always only the first element of the 'iterable'\n&quot;, 
+    &quot;    4. for each 'element' in the 'it'\n&quot;, 
+    &quot;    5. pass the 'total' and 'element' values to the 'func' parameter\n&quot;, 
+    &quot;    6. yield the total (this is always the second  to the nth element of the 'it'\n&quot;, 
+    &quot;    \&quot;\&quot;\&quot;\n&quot;, 
+    &quot;    # 1.\n&quot;, 
+    &quot;    it = iter(iterable)\n&quot;, 
+    &quot;    try:\n&quot;, 
+    &quot;        # 2.\n&quot;, 
+    &quot;        total = next(it)\n&quot;, 
+    &quot;    except StopIteration:\n&quot;, 
+    &quot;        return\n&quot;, 
+    &quot;    # 3. \n&quot;, 
+    &quot;    yield total\n&quot;, 
+    &quot;    # 4. \n&quot;, 
+    &quot;    for element in it:\n&quot;, 
+    &quot;        # 5. \n&quot;, 
+    &quot;        total = func(total, element)\n&quot;, 
+    &quot;        # 6. \n&quot;, 
+    &quot;        yield total\n&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;heading&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;level&quot;: 2, 
+   &quot;source&quot;: [ 
+    &quot;Example 3: Using accumulate2 (above)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: 37, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [ 
+    { 
+     &quot;name&quot;: &quot;stdout&quot;, 
+     &quot;output_type&quot;: &quot;stream&quot;, 
+     &quot;text&quot;: [ 
+      &quot;the itertools accumulate2 generator:  &lt;generator object accumulate2 at 0x03D12030&gt;\nthe itertools accumulate2 results list:  [0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55]\n&quot; 
+     ] 
+    } 
+   ], 
+   &quot;source&quot;: [ 
+    &quot;iterable = range(0, 11)\n&quot;, 
+    &quot;r = accumulate2(iterable)\n&quot;, 
+    &quot;print(\&quot;the itertools accumulate2 generator:  {}\&quot;.format(r))\n&quot;, 
+    &quot;print(\&quot;the itertools accumulate2 results list:  {}\&quot;.format(list(r)))&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;It is intersting that the itertools.accumulate function returns an object while the accumulate2 function returns a generator.  &quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [] 
+  } 
+ ], 
+ &quot;metadata&quot;: { 
+  &quot;kernelspec&quot;: { 
+   &quot;display_name&quot;: &quot;Python 2&quot;, 
+   &quot;language&quot;: &quot;python&quot;, 
+   &quot;name&quot;: &quot;python2&quot; 
+  }, 
+  &quot;language_info&quot;: { 
+   &quot;codemirror_mode&quot;: { 
+    &quot;name&quot;: &quot;ipython&quot;, 
+    &quot;version&quot;: 2 
+   }, 
+   &quot;file_extension&quot;: &quot;.py&quot;, 
+   &quot;mimetype&quot;: &quot;text/x-python&quot;, 
+   &quot;name&quot;: &quot;python&quot;, 
+   &quot;nbconvert_exporter&quot;: &quot;python&quot;, 
+   &quot;pygments_lexer&quot;: &quot;ipython2&quot;, 
+   &quot;version&quot;: &quot;2.7.6&quot; 
+  } 
+ }, 
+ &quot;nbformat&quot;: 4, 
+ &quot;nbformat_minor&quot;: 0 
+} 
+</span></pre>
+</body>
+</html>
