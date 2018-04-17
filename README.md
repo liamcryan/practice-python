@@ -11,7 +11,7 @@ Practicing Python using the standard library:   https://docs.python.org/3/librar
 - [itertools.compress](https://github.com/liamcryan/practice-python/blob/master/standard_library/10_functional_programming_modules/1_itertools/compress.ipynb)
 - [itertools.count](https://github.com/liamcryan/practice-python/blob/master/standard_library/10_functional_programming_modules/1_itertools/count.ipynb)
 - [itertools.cycle](https://github.com/liamcryan/practice-python/blob/master/standard_library/10_functional_programming_modules/1_itertools/cycle.ipynb)
-- [itertools.dropwhile]
+- [itertools.dropwhile](https://github.com/liamcryan/practice-python/blob/master/standard_library/10_functional_programming_modules/1_itertools/dropwhile.ipynb)
 - [itertools.filterfalse]
 - [itertools.groupby]
 - [itertools.islice]
